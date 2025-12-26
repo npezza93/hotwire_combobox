@@ -7,9 +7,12 @@ module HotwireCombobox::Component::Associations
     end
 
     def associated_object
-      @associated_object ||= if association_exists?
-        form_object&.public_send association_name
-      end
+      @associated_object ||=
+        if form_object.associated_object
+          form_object.associated_object
+        elsif association_exists?
+          form_object&.public_send association_name
+        end
     end
 
     def association_exists?

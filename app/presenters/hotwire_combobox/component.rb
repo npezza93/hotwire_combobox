@@ -12,6 +12,7 @@ class HotwireCombobox::Component
   def initialize(
     view, name,
     association_name: nil,
+    associated_object: nil,
     async_src: nil,
     autocomplete: :both,
     data: {},
@@ -37,6 +38,7 @@ class HotwireCombobox::Component
 
     @combobox_attrs = input.reverse_merge(rest).deep_symbolize_keys
     @association_name = association_name || infer_association_name
+    @associated_object = associated_object
 
     validate!
   end
@@ -48,7 +50,8 @@ class HotwireCombobox::Component
 
   private
     attr_reader :view, :autocomplete, :id, :name, :value, :form, :free_text, :open, :request,
-      :data, :debounce_interval, :combobox_attrs, :mobile_at, :association_name, :multiselect_chip_src, :preload
+      :data, :debounce_interval, :combobox_attrs, :mobile_at, :association_name, :multiselect_chip_src, :preload,
+      :associated_object
 
     def canonical_id
       @canonical_id ||= id || form&.field_id(name) || SecureRandom.uuid
