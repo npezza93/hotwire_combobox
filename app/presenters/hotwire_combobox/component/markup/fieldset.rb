@@ -15,7 +15,7 @@ module HotwireCombobox::Component::Markup::Fieldset
     end
 
     def fieldset_data
-      data.merge \
+      data.reverse_merge \
         async_id: canonical_id,
         controller: view.token_list("hw-combobox", data[:controller]),
         hw_combobox_expanded_value: open,
