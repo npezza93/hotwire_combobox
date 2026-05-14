@@ -43,7 +43,7 @@ class HotwireCombobox::Component
     validate!
   end
 
-  def render_in(view_context, &block)
+  def render_in(view_context, ...)
     block.call(self) if block_given?
     view_context.render partial: "hotwire_combobox/component", locals: { component: self }, formats: [ :html ]
   end
